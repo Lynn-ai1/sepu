@@ -205,6 +205,34 @@
 
 .fine { margin-top: 6px; color: #3f3f3f; font-size: 13px; line-height: 1.45; }
 
+.name-input {
+  margin-top: 8px;
+  min-height: 44px;
+  padding: 8px 10px;
+  background: #fff;
+  border: 1px solid #1c1c1c;
+}
+
+.fav-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.fav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 0;
+  border-top: 1px solid #cfcfc8;
+}
+
+.fav-name { font-weight: 600; }
+
+.fav-buttons { display: flex; gap: 12px; color: #1c1c1c; }
+
 .intensity-head {
   display: flex;
   align-items: baseline;

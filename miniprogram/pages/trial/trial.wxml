@@ -69,6 +69,24 @@
       <text class="fine">{{recipeDisclaimer}}</text>
       <text class="fine">配方文字描述的是用意。畫面裡沒有計算增豔和陰影。</text>
 
+      <text class="h2">收藏</text>
+      <text class="fine">名稱和 15 個數字只存在這台裝置，不會上傳。</text>
+      <input class="name-input" maxlength="24" placeholder="配方名稱" value="{{favoriteName}}" bindinput="onFavoriteName" />
+      <view class="fav-actions">
+        <button class="btn" bindtap="saveFavorite">{{renamingId ? '儲存新名稱' : '收藏到這台裝置'}}</button>
+        <button class="btn" wx:if="{{renamingId}}" bindtap="cancelRename">取消改名</button>
+        <button class="btn" open-type="share">分享配方卡</button>
+      </view>
+      <view class="fav" wx:for="{{favorites}}" wx:key="id">
+        <text class="fav-name">{{item.name}}</text>
+        <view class="fav-buttons">
+          <text data-id="{{item.id}}" bindtap="applyFavorite">套用</text>
+          <text data-id="{{item.id}}" bindtap="startRename">改名</text>
+          <text data-id="{{item.id}}" bindtap="deleteFavorite">刪除</text>
+        </view>
+      </view>
+      <text class="fine" wx:if="{{!favorites.length}}">還沒有收藏。</text>
+
       <view class="intensity-head">
         <text class="h2">套用強度</text>
         <text class="intensity-num">{{intensity}}</text>
@@ -113,7 +131,7 @@
         </view>
         <text class="why" wx:if="{{item.why}}">{{item.why}}</text>
       </view>
-      <text class="fine foot">照片只在這台裝置上處理，不會上傳。沒有登入、收藏或分享。試色結果是近似預覽，與 iPhone「照片」的「調整」不同。</text>
+      <text class="fine foot">照片只在這台裝置上處理，不會上傳。收藏只留在這台裝置。分享卡只送出配方數字。沒有登入。試色結果是近似預覽，與 iPhone「照片」的「調整」不同。</text>
     </view>
   </scroll-view>
 

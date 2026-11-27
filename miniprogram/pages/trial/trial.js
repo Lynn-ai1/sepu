@@ -1,10 +1,26 @@
 const adjust = require("../../shared/adjust.js");
 const present = require("../../shared/present.js");
+const records = require("../../shared/recipe-record.js");
 const schema = require("../../shared/schema.js");
 
 const MAX_EDGE = 1600;
 const STATUS_LABEL = {
   "starter-demo-unverified": "起始示範，尚未在 iPhone 相簿驗證",
+  local: "這台裝置收藏的配方",
+  shared: "分享卡帶入的配方",
+};
+
+const wxStorage = {
+  get: function (key) {
+    try {
+      return wx.getStorageSync(key);
+    } catch (error) {
+      return undefined;
+    }
+  },
+  set: function (key, value) {
+    wx.setStorageSync(key, value);
+  },
 };
 
 function callWx(method, options) {
@@ -71,11 +87,37 @@ Page({
     adjustedSrc: "",
     meta: "",
     status: "從相簿選一張照片，或先用內建色塊。",
+    favoriteName: "",
+    favorites: [],
+    renamingId: "",
   },
 
-  onLoad: function () {
+  onLoad: function (options) {
     const sys = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
-    const recipe = schema.recipes[0];
+    if (wx.showShareMenu) {
+      wx.showShareMenu({ menus: ["shareAppMessage"] });
+    }
+    const shared = records.decodeShareToken(options && options.d);
+    let recipe = schema.recipes[0];
+    let status = this.data.status;
+    this.customRecipe = null;
+    if (options && options.d) {
+      if (!shared) {
+        status = "這張配方卡讀不了，已改用起始示範。";
+      } else {
+        this.customRecipe = {
+          id: "share",
+          name: shared.name,
+          nameZhHant: shared.name,
+          description: "從分享卡帶入的配方。",
+          disclaimer: "分享卡只帶配方數字。套到自己的照片上仍是近似預覽，不是 iPhone 相簿調色。",
+          status: "shared",
+          values: shared.values,
+        };
+        recipe = this.customRecipe;
+        status = "已帶入分享的配方。套到自己的照片上仍是近似預覽。";
+      }
+    }
     this.setData({
       pageHeight: sys.windowHeight,
       sheetHeight: Math.max(168, Math.floor(sys.windowHeight * 0.34)),
@@ -84,7 +126,9 @@ Page({
       recipes: schema.recipes.map(function (item) {
         return { id: item.id, nameZhHant: item.nameZhHant };
       }),
-      recipeId: recipe.id,
+      status: status,
+      favoriteName: recipe.nameZhHant || recipe.name,
+      favorites: records.listFavorites(wxStorage),
     });
     this.applyRecipe(recipe, 100);
   },
@@ -102,6 +146,7 @@ Page({
   },
 
   currentRecipe: function () {
+    if (this.customRecipe && this.customRecipe.id === this.data.recipeId) return this.customRecipe;
     const id = this.data.recipeId;
     return schema.recipes.find(function (item) {
       return item.id === id;
@@ -112,11 +157,21 @@ Page({
     this.setData({
       recipeId: recipe.id,
       recipeStatus: STATUS_LABEL[recipe.status] || recipe.status,
-      recipeDesc: recipe.description,
-      recipeDisclaimer: recipe.disclaimer,
+      recipeDesc: recipe.description || "",
+      recipeDisclaimer: recipe.disclaimer || "",
       intensity: intensity,
       rows: this.makeRows(recipe, intensity),
+      favoriteName: recipe.nameZhHant || recipe.name || "",
+      renamingId: "",
     });
+  },
+
+  refreshFavorites: function () {
+    this.setData({ favorites: records.listFavorites(wxStorage) });
+  },
+
+  currentValues: function () {
+    return adjust.scaleValues(this.currentRecipe().values, this.data.intensity);
   },
 
   makeRows: function (recipe, intensity) {
@@ -139,8 +194,115 @@ Page({
       return item.id === id;
     });
     if (!recipe) return;
+    this.customRecipe = null;
+    this.setData({ renamingId: "" });
     this.applyRecipe(recipe, this.data.intensity);
     if (this.source) this.scheduleRender();
+  },
+
+  onFavoriteName: function (event) {
+    this.setData({ favoriteName: event.detail.value });
+  },
+
+  saveFavorite: function () {
+    const name = this.data.favoriteName;
+    if (this.data.renamingId) {
+      const renamed = records.renameFavorite(wxStorage, this.data.renamingId, name);
+      if (!renamed.ok) {
+        this.setData({ status: "先寫一個配方名稱。" });
+        return;
+      }
+      this.refreshFavorites();
+      if (this.customRecipe && this.customRecipe.id === renamed.item.id) {
+        this.customRecipe.name = renamed.item.name;
+        this.customRecipe.nameZhHant = renamed.item.name;
+        this.applyRecipe(this.customRecipe, this.data.intensity);
+      } else {
+        const current = this.currentRecipe();
+        this.setData({ favoriteName: current.nameZhHant || current.name || "", renamingId: "" });
+      }
+      this.setData({ status: "已改名。收藏只留在這台裝置。" });
+      return;
+    }
+    const saved = records.addFavorite(wxStorage, {
+      name: name,
+      values: this.currentValues(),
+    });
+    if (!saved.ok) {
+      this.setData({ status: "先寫一個配方名稱。" });
+      return;
+    }
+    this.setData({ status: "已收藏「" + saved.item.name + "」。只存在這台裝置。" });
+    this.refreshFavorites();
+  },
+
+  applyFavorite: function (event) {
+    const id = event.currentTarget.dataset.id;
+    const item = records.listFavorites(wxStorage).find(function (entry) {
+      return entry.id === id;
+    });
+    if (!item) {
+      this.refreshFavorites();
+      return;
+    }
+    this.customRecipe = {
+      id: item.id,
+      name: item.name,
+      nameZhHant: item.name,
+      description: "這台裝置收藏的配方。",
+      disclaimer: "收藏只存在這台裝置。套用後仍是近似預覽，不是 iPhone 相簿調色。",
+      status: "local",
+      values: item.values,
+    };
+    this.setData({ renamingId: "" });
+    this.applyRecipe(this.customRecipe, 100);
+    this.setData({ status: "已套用收藏「" + item.name + "」。可以換一張照片。" });
+    if (this.source) this.scheduleRender();
+  },
+
+  startRename: function (event) {
+    const id = event.currentTarget.dataset.id;
+    const item = records.listFavorites(wxStorage).find(function (entry) {
+      return entry.id === id;
+    });
+    if (!item) return;
+    this.setData({
+      renamingId: id,
+      favoriteName: item.name,
+      status: "改完名稱後按儲存新名稱。",
+    });
+  },
+
+  cancelRename: function () {
+    this.setData({ renamingId: "" });
+  },
+
+  deleteFavorite: function (event) {
+    const id = event.currentTarget.dataset.id;
+    const page = this;
+    wx.showModal({
+      title: "刪除收藏",
+      content: "從這台裝置刪除這份配方。照片不會被刪掉。",
+      confirmText: "刪除",
+      success: function (res) {
+        if (!res.confirm) return;
+        records.deleteFavorite(wxStorage, id);
+        if (page.customRecipe && page.customRecipe.id === id) page.customRecipe = null;
+        page.setData({
+          renamingId: page.data.renamingId === id ? "" : page.data.renamingId,
+          status: "已從這台裝置刪除收藏。",
+        });
+        page.refreshFavorites();
+      },
+    });
+  },
+
+  onShareAppMessage: function () {
+    const recipe = this.currentRecipe();
+    return records.buildShareMessage({
+      name: this.data.favoriteName || recipe.nameZhHant || recipe.name,
+      values: this.currentValues(),
+    });
   },
 
   onView: function (event) {
