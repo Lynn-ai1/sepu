@@ -1,0 +1,9 @@
+{
+  "name": "sepu",
+  "private": true,
+  "description": "Client-only approximate preview for 色譜 starter recipes.",
+  "scripts": {
+    "test": "node --test",
+    "embed-schema": "node scripts/embed-schema.js"
+  }
+}

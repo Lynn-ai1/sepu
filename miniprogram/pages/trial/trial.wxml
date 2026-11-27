@@ -1,0 +1,139 @@
+<view class="page" style="height: {{pageHeight}}px;">
+  <view class="head">
+    <view class="title-row">
+      <text class="name">色譜</text>
+      <text class="step">試色</text>
+    </view>
+    <view class="disclaimer">
+      <text class="lead">這是近似算法，與 iPhone「照片」的「調整」不同，不會得到相同結果。</text>
+      <text class="rest">增豔和陰影是區域調整，配方數字只顯示，不進畫面。自然飽和度按顏色濃淡和膚色分開處理，沒有用飽和度滑桿代替。清晰度、畫質、雜點消除、暈邊只做粗略的空間處理。Apple 沒有公開各滑桿公式，這裡的強弱不是相簿刻度。</text>
+    </view>
+  </view>
+
+  <view class="compare">
+    <view class="actions">
+      <button class="btn" bindtap="choosePhoto">從相簿選照片</button>
+      <button class="btn" bindtap="useSwatch">內建色塊</button>
+      <button class="btn primary" bindtap="saveImage" disabled="{{!adjustedSrc}}">存到相簿</button>
+    </view>
+    <text class="meta" wx:if="{{meta}}">{{meta}}</text>
+    <view class="toggle">
+      <view class="segment {{view === 'side' ? 'on' : ''}}" data-view="side" bindtap="onView">並排</view>
+      <view class="segment {{view === 'wipe' ? 'on' : ''}}" data-view="wipe" bindtap="onView">滑動對比</view>
+    </view>
+
+    <view class="empty" wx:if="{{!originalSrc}}">還沒有照片。從相簿選一張，或先用內建色塊。</view>
+
+    <view class="pics" wx:if="{{originalSrc && view === 'side'}}" style="height: {{picHeight}}px;">
+      <view class="pane">
+        <text class="cap">原圖</text>
+        <image class="pic" src="{{originalSrc}}" mode="aspectFit" />
+      </view>
+      <view class="pane">
+        <text class="cap">近似預覽</text>
+        <image class="pic" src="{{adjustedSrc}}" mode="aspectFit" />
+      </view>
+    </view>
+
+    <view class="wipe" wx:if="{{originalSrc && view === 'wipe'}}" style="height: {{picHeight}}px;">
+      <view class="wipe-labels">
+        <text>原圖</text>
+        <text>近似預覽</text>
+      </view>
+      <view class="wipe-frame">
+        <image class="wipe-img" src="{{adjustedSrc}}" mode="aspectFit" />
+        <view class="wipe-clip" style="width: {{split}}%;">
+          <image class="wipe-img wipe-under" src="{{originalSrc}}" mode="aspectFit" style="width: {{stageWidth}}px; height: {{picHeight}}px;" />
+        </view>
+        <view class="wipe-line" style="left: {{split}}%;"></view>
+      </view>
+      <slider class="split" min="0" max="100" step="1" value="{{split}}" activeColor="#1c1c1c" backgroundColor="#cfcfc8" block-color="#1c1c1c" bindchanging="onSplit" bindchange="onSplit" />
+    </view>
+    <text class="status">{{status}}</text>
+  </view>
+
+  <scroll-view class="sheet" scroll-y style="height: {{sheetHeight}}px;">
+    <view class="sheet-inner">
+      <text class="h2">示範配方</text>
+      <view class="recipes">
+        <view
+          class="recipe {{recipeId === item.id ? 'on' : ''}}"
+          wx:for="{{recipes}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onRecipe"
+        >{{item.nameZhHant}}</view>
+      </view>
+      <text class="strong">{{recipeStatus}}</text>
+      <text class="prose">{{recipeDesc}}</text>
+      <text class="fine">{{recipeDisclaimer}}</text>
+      <text class="fine">配方文字描述的是用意。畫面裡沒有計算增豔和陰影。</text>
+
+      <text class="h2">收藏</text>
+      <text class="fine">名稱和 15 個數字只存在這台裝置，不會上傳。</text>
+      <input class="name-input" maxlength="24" placeholder="配方名稱" value="{{favoriteName}}" bindinput="onFavoriteName" />
+      <view class="fav-actions">
+        <button class="btn" bindtap="saveFavorite">{{renamingId ? '儲存新名稱' : '收藏到這台裝置'}}</button>
+        <button class="btn" wx:if="{{renamingId}}" bindtap="cancelRename">取消改名</button>
+        <button class="btn" open-type="share">分享配方卡</button>
+      </view>
+      <view class="fav" wx:for="{{favorites}}" wx:key="id">
+        <text class="fav-name">{{item.name}}</text>
+        <view class="fav-buttons">
+          <text data-id="{{item.id}}" bindtap="applyFavorite">套用</text>
+          <text data-id="{{item.id}}" bindtap="startRename">改名</text>
+          <text data-id="{{item.id}}" bindtap="deleteFavorite">刪除</text>
+        </view>
+      </view>
+      <text class="fine" wx:if="{{!favorites.length}}">還沒有收藏。</text>
+
+      <view class="intensity-head">
+        <text class="h2">套用強度</text>
+        <text class="intensity-num">{{intensity}}</text>
+      </view>
+      <slider
+        min="0"
+        max="100"
+        step="1"
+        value="{{intensity}}"
+        activeColor="#1c1c1c"
+        backgroundColor="#cfcfc8"
+        block-color="#1c1c1c"
+        bindchanging="onIntensity"
+        bindchange="onIntensity"
+      />
+      <view class="ends">
+        <text>0 原圖</text>
+        <text>100 配方全量</text>
+      </view>
+      <text class="fine">這是預覽用來縮放整份配方的整數。0 時畫面回到原圖。四捨五入時，.5 會遠離 0。增豔和陰影在任何強度都不進畫面。</text>
+      <text class="fine">比較和儲存用同一張工作圖，長邊最多 1600 像素，不是原檔尺寸。</text>
+
+      <text class="h2 params-title">配方數值</text>
+      <text class="fine">名稱用台灣「照片」調整列的顯示名，順序與工具列相同。滑桿 0 在中央。標成「近似」的項目有畫進預覽。標成「只顯示」的項目只留下數字。</text>
+      <view class="ruler"><text>-100</text><text>0</text><text>+100</text></view>
+      <view class="param" wx:for="{{rows}}" wx:key="id">
+        <view class="param-top">
+          <view class="param-name">
+            <text>{{item.name}}</text>
+            <text class="en" wx:if="{{item.englishHint}}">{{item.englishHint}}</text>
+          </view>
+          <view class="param-value">
+            <text>{{item.valueText}}</text>
+            <text class="base" wx:if="{{item.baseText}}">{{item.baseText}}</text>
+          </view>
+          <text class="state {{item.code}}">{{item.stateLabel}}</text>
+        </view>
+        <view class="meter">
+          <view class="track"></view>
+          <view class="zero"></view>
+          <view class="fill {{item.code}}" style="left: {{item.fillLeft}}; width: {{item.fillWidth}};"></view>
+        </view>
+        <text class="why" wx:if="{{item.why}}">{{item.why}}</text>
+      </view>
+      <text class="fine foot">照片只在這台裝置上處理，不會上傳。收藏只留在這台裝置。分享卡只送出配方數字。沒有登入。試色結果是近似預覽，與 iPhone「照片」的「調整」不同。</text>
+    </view>
+  </scroll-view>
+
+  <canvas type="2d" id="work" class="work"></canvas>
+</view>
