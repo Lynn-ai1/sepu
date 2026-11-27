@@ -30,17 +30,8 @@
       </div>
     </div>
 
-    <div class="page-scroll">
-    <main class="wrap">
-      <section aria-labelledby="recipe-heading">
-        <h2 id="recipe-heading">示範配方</h2>
-        <div id="recipes" class="recipes" role="radiogroup" aria-label="示範配方"></div>
-        <p id="recipe-status" class="status-line"></p>
-        <p id="recipe-desc"></p>
-        <p id="recipe-disclaimer" class="fine"></p>
-        <p class="fine">配方文字描述的是用意。畫面裡沒有計算增豔和陰影。</p>
-      </section>
-
+    <main class="workspace">
+      <div class="wrap compare-column">
       <section id="photo" aria-labelledby="photo-heading">
         <h2 id="photo-heading">原圖與近似預覽</h2>
         <div class="actions">
@@ -81,13 +72,26 @@
             </figure>
             <div id="handle" class="handle" hidden></div>
           </div>
-          <label class="wipe-control" for="wipe">分隔位置</label>
-          <input id="wipe" class="wipe-control" type="range" min="0" max="100" step="1" value="50" aria-label="原圖與近似預覽的分隔位置，數字是原圖所佔的百分比" />
         </div>
-        <p class="fine">比較和儲存用同一張工作圖，長邊最多 1600 像素，不是原檔尺寸。存下的圖沒有加上這段說明。</p>
         <p id="status" role="status">選擇一張照片，或先用內建色塊。</p>
-        <div id="save-fallback"></div>
       </section>
+      </div>
+    </main>
+
+    <div class="page-scroll">
+      <div class="wrap">
+        <label class="wipe-control" for="wipe">分隔位置</label>
+        <input id="wipe" class="wipe-control" type="range" min="0" max="100" step="1" value="50" aria-label="原圖與近似預覽的分隔位置，數字是原圖所佔的百分比" />
+        <section aria-labelledby="recipe-heading">
+          <h2 id="recipe-heading">示範配方</h2>
+          <div id="recipes" class="recipes" role="radiogroup" aria-label="示範配方"></div>
+          <p id="recipe-status" class="status-line"></p>
+        </section>
+        <p id="recipe-desc"></p>
+        <p id="recipe-disclaimer" class="fine"></p>
+        <p class="fine">配方文字描述的是用意。畫面裡沒有計算增豔和陰影。</p>
+        <p class="fine">比較和儲存用同一張工作圖，長邊最多 1600 像素，不是原檔尺寸。存下的圖沒有加上這段說明。</p>
+        <div id="save-fallback"></div>
 
       <section aria-labelledby="intensity-heading">
         <div class="intensity-head">
@@ -105,7 +109,7 @@
         <p class="ruler-key" aria-hidden="true"><span>-100</span><span>0</span><span>+100</span></p>
         <ol id="params"></ol>
       </section>
-    </main>
+      </div>
 
     <footer>
       <div class="wrap">

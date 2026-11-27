@@ -399,6 +399,7 @@
     stage.classList.toggle("is-wipe", wipe);
     wipeLabels.hidden = !wipe;
     handle.hidden = !wipe || !source;
+    if (wipe) document.querySelector(".page-scroll").scrollTop = 0;
   }
 
   function setSplit(value) {
