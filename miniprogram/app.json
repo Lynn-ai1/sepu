@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/trial/trial"
+  ],
+  "window": {
+    "navigationBarTitleText": "色譜",
+    "navigationBarBackgroundColor": "#fff6e4",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f3f3f1",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.writePhotosAlbum": {
+      "desc": "把試色的近似預覽存回手機相簿。照片只留在這台裝置，不會上傳。"
+    }
+  }
+}

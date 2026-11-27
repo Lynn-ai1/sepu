@@ -4,9 +4,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const source = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "schema", "v1-recipe-schema.json"), "utf8"));
-const embedded = require("../preview/schema.js");
-const present = require("../preview/present.js");
-const adjust = require("../preview/adjust.js");
+const embedded = require("../miniprogram/shared/schema.js");
+const present = require("../miniprogram/shared/present.js");
+const adjust = require("../miniprogram/shared/adjust.js");
 
 const TAIWAN_NAMES = [
   "曝光",

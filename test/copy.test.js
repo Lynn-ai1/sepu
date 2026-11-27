@@ -8,7 +8,7 @@ function read(rel) {
   return fs.readFileSync(path.join(root, rel), "utf8");
 }
 
-const ui = [read("preview/index.html"), read("preview/app.js"), read("preview/present.js"), read("README.md")].join("\n");
+const ui = [read("preview/index.html"), read("preview/app.js"), read("miniprogram/shared/present.js"), read("README.md"), read("miniprogram/pages/trial/trial.wxml"), read("miniprogram/pages/trial/trial.js")].join("\n");
 
 test("the page and readme keep the non-parity disclaimer", () => {
   const html = read("preview/index.html");
@@ -37,7 +37,12 @@ test("visible UI copy does not claim Photos parity", () => {
 test("the page shell uses Taiwan names rather than simplified button labels", () => {
   const html = read("preview/index.html");
   const app = read("preview/app.js");
-  const surface = html + "\n" + app;
+  const surface = [
+    html,
+    app,
+    read("miniprogram/pages/trial/trial.wxml"),
+    read("miniprogram/pages/trial/trial.js"),
+  ].join("\n");
   const simplified = ["鲜明度", "高光", "阴影", "饱和度", "色温", "色调", "锐度", "噪点消除", "晕影", "暖色育肤"];
   for (const word of simplified) {
     assert.equal(surface.includes(word), false, word);

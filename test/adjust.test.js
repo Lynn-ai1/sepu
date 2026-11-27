@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const adjust = require("../preview/adjust.js");
+const adjust = require("../miniprogram/shared/adjust.js");
 
 function pixel(r, g, b) {
   return { width: 1, height: 1, data: new Uint8ClampedArray([r, g, b, 255]) };

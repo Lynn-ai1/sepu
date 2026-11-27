@@ -3,7 +3,7 @@ const path = require("path");
 
 const root = path.join(__dirname, "..");
 const sourcePath = path.join(root, "schema", "v1-recipe-schema.json");
-const targetPath = path.join(root, "preview", "schema.js");
+const targetPath = path.join(root, "miniprogram", "shared", "schema.js");
 const data = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
 const body = JSON.stringify(data, null, 2).replace(/</g, "\\u003c").replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029");
 const output = `/* Generated from schema/v1-recipe-schema.json by scripts/embed-schema.js.
