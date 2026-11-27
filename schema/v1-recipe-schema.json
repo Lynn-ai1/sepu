@@ -1,0 +1,1067 @@
+{
+  "schemaVersion": "1.0",
+  "product": "sepu",
+  "title": "色譜第一版配方參數格式",
+  "updated": "2026-11-26",
+  "timezone": "Asia/Hong_Kong",
+  "disclaimer": "網頁或小程式試色只是近似算法，不得說成與 iPhone 相簿調色一致。部分中文顯示名已用公開介面截圖核對（台灣繁體），但仍不是本專案的實機驗收。數值範圍與默認值並非 Apple 官方規格。示範配方未經 iPhone 相簿實機驗證，本輪未改其數值。",
+  "scope": "第一版只收 iPhone 照片／相片 App「調整」的 15 個單滑桿。自動增強、濾鏡、裁切、攝影風格、標註與 Apple Intelligence 工具不在本 schema。",
+  "sources": [
+    {
+      "id": "apple-iphone-tw",
+      "title": "在 iPhone 上編輯照片和影片",
+      "url": "https://support.apple.com/zh-tw/guide/iphone/iphb08064d57/ios",
+      "role": "official-ios-zh-Hant-TW"
+    },
+    {
+      "id": "apple-iphone-hk",
+      "title": "在 iPhone 上編輯相片及影片",
+      "url": "https://support.apple.com/zh-hk/guide/iphone/iphb08064d57/ios",
+      "role": "official-ios-zh-Hant-HK"
+    },
+    {
+      "id": "apple-iphone-cn",
+      "title": "在 iPhone 上编辑照片和视频",
+      "url": "https://support.apple.com/zh-cn/guide/iphone/iphb08064d57/ios",
+      "role": "official-ios-zh-Hans"
+    },
+    {
+      "id": "apple-ipad-tw",
+      "title": "在 iPad 上編輯照片和影片",
+      "url": "https://support.apple.com/zh-tw/guide/ipad/ipad735956e8/ipados",
+      "role": "official-ipados-zh-Hant-TW"
+    },
+    {
+      "id": "apple-ipad-hk",
+      "title": "在 iPad 上編輯照片和影片（香港）",
+      "url": "https://support.apple.com/zh-hk/guide/ipad/ipad735956e8/ipados",
+      "role": "official-ipados-zh-Hant-HK"
+    },
+    {
+      "id": "apple-ipad-cn",
+      "title": "在 iPad 上编辑照片和视频",
+      "url": "https://support.apple.com/zh-cn/guide/ipad/ipad735956e8/ipados",
+      "role": "official-ipados-zh-Hans"
+    },
+    {
+      "id": "apple-mac-light-color-tw",
+      "title": "在 Mac 上調整照片或影片中的光線、曝光和顏色",
+      "url": "https://support.apple.com/zh-tw/guide/photos/pht806aea6a6/mac",
+      "role": "official-mac-zh-Hant"
+    },
+    {
+      "id": "apple-mac-wb-tw",
+      "title": "在 Mac 上的「照片」中調整白平衡",
+      "url": "https://support.apple.com/zh-tw/guide/photos/pht9b1d4a744/mac",
+      "role": "official-mac-white-balance-zh-Hant"
+    },
+    {
+      "id": "apple-mac-sharpen-tw",
+      "title": "在 Mac 上銳化照片或影片",
+      "url": "https://support.apple.com/zh-tw/guide/photos/phtba5e3cf7d/mac",
+      "role": "official-mac-contrast-only"
+    },
+    {
+      "id": "apple-mac-definition-tw",
+      "title": "在 Mac 上調整照片或影片畫質",
+      "url": "https://support.apple.com/zh-tw/guide/photos/phtb151c05a0/mac",
+      "role": "official-mac-contrast-only"
+    },
+    {
+      "id": "apple-mac-nr-tw",
+      "title": "在 Mac 上消除照片中的雜點",
+      "url": "https://support.apple.com/zh-tw/guide/photos/phta85f0d224/mac",
+      "role": "official-mac-contrast-only"
+    },
+    {
+      "id": "apple-mac-vignette-tw",
+      "title": "在 Mac 上為照片或影片套用暈影",
+      "url": "https://support.apple.com/zh-tw/guide/photos/phtafbdcae9d/mac",
+      "role": "official-mac-contrast-only"
+    },
+    {
+      "id": "apple-photos-tech-brief-2019",
+      "title": "Photos Tech Brief, September 2019",
+      "url": "https://www.apple.com/id/privacy/docs/Photos_Tech_Brief_Sept_2019.pdf",
+      "role": "official-english-definitions-ios13"
+    },
+    {
+      "id": "apple-iphone-en",
+      "title": "Edit photos and videos on iPhone",
+      "url": "https://support.apple.com/guide/iphone/edit-photos-and-videos-iphb08064d57/ios",
+      "role": "official-ios-en"
+    },
+    {
+      "id": "sixcolors-ios13-photos",
+      "title": "13 Features of iOS 13: Photos, Jason Snell, Six Colors, 2019-09-19",
+      "url": "https://sixcolors.com/post/2019/09/13-features-of-ios-13-photos/",
+      "role": "secondary-range"
+    },
+    {
+      "id": "iphone-photography-school",
+      "title": "How To Edit Photos On iPhone Using The Built-In Photos App",
+      "url": "https://iphonephotographyschool.com/how-to-edit-photos-on-iphone/",
+      "role": "secondary-slider-direction"
+    },
+    {
+      "id": "kkplay3c-toning",
+      "title": "五款 iPhone照片內建調色教學",
+      "url": "https://kkplay3c.net/iphone-photo-toning/",
+      "role": "tutorial-synonyms-public"
+    },
+    {
+      "id": "mrmad-toning",
+      "title": "iPhone內建調色教學",
+      "url": "https://mrmad.com.tw/iphone-photo-color-correction-tutorial/",
+      "role": "tutorial-synonyms-public"
+    },
+    {
+      "id": "tech-girlz-translation-2025",
+      "title": "iPhone 高光是什麼？鮮明度是什麼？中國用語與台灣用語對照",
+      "url": "https://www.tech-girlz.com/2025/01/iphone-camera-settings-translation.html",
+      "role": "tw-cn-label-map-with-ui-screenshots",
+      "accessed": "2026-11-26"
+    },
+    {
+      "id": "tech-girlz-sharpness-2023",
+      "title": "iPhone 沒有銳化功能？其實銳化 iPhone 照片方法就藏在編輯裡！",
+      "url": "https://www.tech-girlz.com/2023/06/iphone-sharpness-photos.html",
+      "role": "tw-ui-screenshots-sharpness-definition-nr",
+      "accessed": "2026-11-26"
+    },
+    {
+      "id": "tech-girlz-edit-tips-2023",
+      "title": "9 個 iPhone 照片編輯技巧教學",
+      "url": "https://www.tech-girlz.com/2023/05/edit-iphone-photo.html",
+      "role": "tw-ui-screenshots-vignette-saturation",
+      "accessed": "2026-11-26"
+    },
+    {
+      "id": "uptogo-cross-strait-2026",
+      "title": "解密 iPhone 光感是什麼、兩岸相機調色專有名詞對照",
+      "url": "https://uptogo.com.tw/%E7%A7%91%E6%8A%80/iphone%E5%85%89%E6%84%9F%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F/",
+      "role": "tw-cn-label-map-text-no-new-screenshots",
+      "accessed": "2026-11-26"
+    },
+    {
+      "id": "gadgethacks-vignette-2019",
+      "title": "Focus Your iPhone Photos & Videos by Adding a Vignette",
+      "url": "https://ios.gadgethacks.com/how-to/focus-your-iphone-photos-videos-by-adding-vignette-0212027/",
+      "role": "secondary-vignette-range-direction",
+      "accessed": "2026-11-26"
+    },
+    {
+      "id": "zanzan-toning-2025",
+      "title": "贊贊小屋，2025-04-15：iPhone 照片調色（台灣繁體介面截圖）",
+      "url": "https://zanzan.tw/archives/54150",
+      "role": "taiwan-iphone-adjust-button-screenshots: 陰影、色溫、亮度；自動按鈕；曝光見於捨棄更動對話框標題。獨立於塔科女子的公開來源。不是實機驗收。",
+      "accessed": "2026-11-26"
+    },
+    {
+      "id": "sspai-ios13-photos-2019",
+      "title": "少数派，2019：iOS 13 相机、相册和截屏工具（簡體介面截圖）",
+      "url": "https://sspai.com/post/56483",
+      "role": "simplified-chinese-adjust-button-screenshots: 高光、噪点消除、自动。文內亦寫出色温、色调，但這兩項未在截圖按鈕上入鏡。不是實機驗收。",
+      "accessed": "2026-11-26"
+    },
+    {
+      "id": "ezone-hk-toning-2024",
+      "title": "ezone／U Beauty，2024：iPhone 內置調色公式（香港網站，僅教程用字）",
+      "url": "https://ezone.hk/article/3612742/iPhone-%E5%85%A7%E7%BD%AE%E8%90%AC%E7%94%A8%E8%AA%BF%E8%89%B2%E5%85%AC%E5%BC%8F-%E5%BF%AB%E9%80%9F%E8%AA%BF%E6%88%90%E9%A6%AC%E5%8D%A1%E9%BE%8D%E9%A2%A8%E6%A0%BC-1-%E6%AD%A5%E5%A5%97%E7%94%A8%E4%BA%BA%E5%83%8F%E7%BE%8E%E7%99%BD%E6%95%88%E6%9E%9C",
+      "role": "hong-kong-tutorial-text-only: 配方寫陰影、色溫、色調、增豔、清晰度等；配圖是對比照與「複製／貼上編輯內容」選單，沒有調整列按鈕標籤。用字不能當成香港按鈕核定。",
+      "accessed": "2026-11-26"
+    },
+    {
+      "id": "kkplay3c-toning-2023",
+      "title": "KKPLAY3C，2023-01-30：五款 iPhone 照片內建調色教學（台灣繁體選中按鈕截圖，含色調）",
+      "url": "https://kkplay3c.net/iphone-photo-toning/",
+      "role": "taiwan-iphone-adjust-button-screenshots: 色調（15、56）、曝光、對比、黑點、自然飽和度等。不是實機驗收。",
+      "accessed": "2026-11-27"
+    },
+    {
+      "id": "gotrip-hk-fuji-2025",
+      "title": "GOtrip，2025-01：iPhone 富士調色教學（香港繁體介面）",
+      "url": "https://www.gotrip.hk/%e6%97%85%e9%81%8a/iphone-%e5%af%8c%e5%a3%ab%e8%89%b2-%e8%aa%bf%e8%89%b2-%e6%95%99%e5%ad%b8-%e6%97%85%e9%81%8a%e6%95%99%e5%ae%a4-gt13-1518407/",
+      "role": "hong-kong-adjust-screenshots: 選中曝光；分頁「裁剪」。攝影風格畫面的「色調 -65」不是調整列 Tint。不是實機驗收。",
+      "accessed": "2026-11-27"
+    },
+    {
+      "id": "ezone-hk-film-2025",
+      "title": "ezone，2025-12-19：iPhone 日系相片調色（香港繁體 iOS 18 截圖）",
+      "url": "https://ezone.hk/article/3533338/%E6%89%93%E9%80%A0%E7%8D%A8%E7%89%B9%E6%97%A5%E7%B3%BB%E5%BA%95%E7%89%87%E6%84%9F-iPhone%E5%85%A7%E5%BB%BA%E7%85%A7%E7%89%87%E8%AA%BF%E8%89%B2%E6%95%99%E5%AD%B8%E8%88%87%E4%B8%80%E9%8D%B5%E5%A5%97%E7%94%A8%E6%8A%80%E5%B7%A7-%E9%99%84%E8%AA%BF%E8%89%B2%E5%8F%83%E6%95%B8",
+      "role": "hong-kong-adjust-screenshots: 選中曝光（31、-47）與自動；分頁「裁剪」；關於本機「相片」。無色調選中按鈕。不是實機驗收。",
+      "accessed": "2026-11-27"
+    },
+    {
+      "id": "zol-ios13-photos-2019",
+      "title": "iOS 13迎来史上最强修图功能 手机秒变修图神器",
+      "url": "https://dcdv.zol.com.cn/720/7200929.html",
+      "role": "screenshot-zh-Hans-ios13",
+      "published": "2019-06-26",
+      "note": "中關村在線公開頁面（2019-06-26，香港時間）。他人裝置的 iOS 13 調整列截圖，不是本專案實機驗收。可能為正式版發布前介面，但與少数派 2019 iOS 13 截圖屬同一套調整列。"
+    },
+    {
+      "id": "weixin-iphone-native-toning-2022",
+      "title": "为什么博主都爱用iPhone原相机调色？",
+      "url": "https://mp.weixin.qq.com/s/A2FszyUIhgqFOu828vxZFg",
+      "role": "screenshot-zh-Hans",
+      "published": "2022-10-29",
+      "note": "微信公眾號「玩转手机摄影」公開文章（2022-10-29 07:25 香港時間）。無需登入即可讀取正文與配圖。他人裝置的簡體調整列截圖，不是本專案實機驗收。"
+    }
+  ],
+  "namingNotes": {
+    "displayScript": "zh-Hant",
+    "officialIosQuoted": [
+      "曝光",
+      "增豔",
+      "增艷",
+      "亮部",
+      "暗部",
+      "曝光",
+      "鲜明度",
+      "高光",
+      "阴影"
+    ],
+    "regionalVariants": [
+      {
+        "ids": [
+          "brilliance"
+        ],
+        "zhHantTW": "增豔",
+        "zhHantHK": "增艷",
+        "zhHans": "鲜明度"
+      },
+      {
+        "ids": null,
+        "note": "Apple 台灣手冊稱「照片」App，香港 iPhone 手冊稱「相片」App。辨識時視為同一產品。"
+      }
+    ],
+    "unverifiedOniPhoneUi": [
+      "zh-Hant-HK Adjust-strip labels other than 曝光/自動 (no 色調/色溫 etc. selected-button screenshot)",
+      "zh-Hans button text for 阴影/锐度/清晰度"
+    ],
+    "shadowsNameConflict": "台灣 iPhone 調整按鈕截圖（贊贊小屋，2025-04-15，公開網頁，非本專案實機）清楚顯示「陰影」、數值 100。官方 iPad 使用手冊（台灣、香港）仍以引號寫「暗部」；中國 iPad 手冊寫「阴影」。第一版台灣顯示名維持「陰影」，「暗部」保留為官方文件同義。香港 iPhone 按鈕究竟是「陰影」還是「暗部」，以及簡體按鈕是否為「阴影」，仍未有截圖核定。不是實機確認。",
+    "taiwanUiFromScreenshots": {
+      "highlights": "亮部",
+      "brilliance": "增豔",
+      "sharpness": "清晰度",
+      "definition": "畫質",
+      "noiseReduction": "雜點消除",
+      "vignette": "暈邊",
+      "saturation": "飽和度",
+      "shadows": "陰影",
+      "warmth": "色溫",
+      "brightness": "亮度",
+      "tint": "色調",
+      "exposure": "曝光",
+      "contrast": "對比",
+      "blackPoint": "黑點",
+      "vibrance": "自然飽和度"
+    },
+    "crossStraitRecognitionWarning": "兩岸用詞對調風險：中國教程的「清晰度」對應台灣介面「畫質」（Definition）；中國的「銳度／銳化」對應台灣介面「清晰度」（Sharpness）。辨識時不可只看「清晰度」三個字。",
+    "simplifiedUiFromScreenshots": {
+      "highlights": "高光",
+      "noiseReduction": "噪点消除",
+      "exposure": "曝光",
+      "saturation": "饱和度",
+      "vignette": "晕影",
+      "auto": "自动",
+      "tint": "色调",
+      "warmth": "色温",
+      "brilliance": "鲜明度",
+      "note": "高光、噪点消除來自少数派 2019（sspai-09.jpg）。曝光、饱和度、晕影、自动來自中關村在線 2019。色调（39）、色温（-45／22／82）、鲜明度（50／38）來自微信公眾號「玩转手机摄影」2022-10-29 公開截圖（weixin-tint-39.jpg 等）。選中「色调」時左側為色溫溫度計、右側為清晰度三角，與工具列順序一致。阴影、锐度、清晰度的簡體選中按鈕仍未入鏡。不是實機驗收。"
+    },
+    "officialHandbookInconsistencyHK": "香港 iPhone 手冊舉例「增艷」，App 名稱「相片」；香港 iPad 手冊同一調整段卻寫「增豔」，並舉例「暗部」。官方文件用字不一致，不能單憑手冊斷定香港 iPhone 按鈕用哪一個字。",
+    "hongKongUiFromScreenshots": {
+      "exposure": "曝光",
+      "auto": "自動",
+      "cropTab": "裁剪",
+      "note": "來自 GOtrip、ezone 香港公開截圖（2026-11-27）。裁切分頁為「裁剪」，與既有台灣截圖「裁切」不同。相機／設定用語見「影相」「相片」。調整列尚未見到色調、色溫等其餘選中按鈕。不是實機驗收。"
+    }
+  },
+  "parameters": [
+    {
+      "id": "exposure",
+      "uiOrder": 1,
+      "nameZhHant": "曝光",
+      "nameEn": "Exposure",
+      "nameZhHans": "曝光",
+      "synonyms": [
+        "曝光度",
+        "exposure"
+      ],
+      "nameSource": "official-ios-and-screenshot",
+      "group": "light",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-unofficial",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "整張影像變亮",
+      "negativeDirection": "整張影像變暗",
+      "definition": "調整整張影像的亮度或暗度（全域色調）。",
+      "approximationNote": "相對容易做全域近似，但仍不得稱為與相簿一致。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW-and-zh-Hant-HK-and-zh-Hans"
+    },
+    {
+      "id": "brilliance",
+      "uiOrder": 2,
+      "nameZhHant": "增豔",
+      "nameEn": "Brilliance",
+      "nameZhHans": "鲜明度",
+      "synonyms": [
+        "增艷",
+        "鲜明度",
+        "鮮明度",
+        "brilliance"
+      ],
+      "nameSource": "official-ios-and-screenshot",
+      "nameSourceNote": "2025 台灣介面截圖為「增豔」。台灣官方手冊「增豔」，香港官方手冊「增艷」，中國官方「鲜明度」。勿與濾鏡「鮮豔」或「自然飽和度」混淆。",
+      "group": "light",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-unofficial",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "提亮暗區、收住亮部並加入對比，畫面看起來更飽滿生動",
+      "negativeDirection": "相對降低上述效果（暗部更暗、亮部更亮）；精確反向行為以實機為準",
+      "definition": "區域性調整：提亮暗區、拉回亮部、加入對比以顯示隱藏細節。官方寫明此調整為中性色、不直接套用飽和度，但較亮且對比較高的影像可能看起來更鮮豔。",
+      "approximationNote": "2019 Tech Brief 描述為區域性（約 31×31 格）處理。全域曲線很難近似，預覽必須明講差異。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW-and-zh-Hans"
+    },
+    {
+      "id": "highlights",
+      "uiOrder": 3,
+      "nameZhHant": "亮部",
+      "nameEn": "Highlights",
+      "nameZhHans": "高光",
+      "synonyms": [
+        "高光",
+        "高光部分",
+        "亮部細節",
+        "highlights"
+      ],
+      "nameSource": "official-ios-and-screenshot",
+      "group": "light",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-unofficial",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "最亮處更亮",
+      "negativeDirection": "最亮處變暗、較易找回過亮細節。官方：降低 Highlights，最亮處會更暗。",
+      "definition": "調整亮部（影像最亮區域）的細節。",
+      "approximationNote": "可用高光曲線做粗略近似，不得稱為一致。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW-and-zh-Hans",
+      "nameSourceNote": "官方 iPhone 手冊（台／港）與 2025 台灣介面截圖均為「亮部」。簡中官方為「高光」。"
+    },
+    {
+      "id": "shadows",
+      "uiOrder": 4,
+      "nameZhHant": "陰影",
+      "nameEn": "Shadows",
+      "nameZhHans": "阴影",
+      "synonyms": [
+        "暗部",
+        "阴影",
+        "暗部細節",
+        "shadows"
+      ],
+      "nameSource": "screenshot-zh-Hant-TW",
+      "nameSourceNote": "本輪未找到按鈕截圖。官方 iPad 手冊引號作「暗部」；台灣對照文與調色教程寫「陰影」，中國官方 iPad 手冊為「阴影」。顯示名改依台灣對照文／教程，並非實機或截圖確認。",
+      "group": "light",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-unofficial",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "最暗處變亮，陰影細節較容易看見。官方：提高 Shadows，最暗處會更亮。",
+      "negativeDirection": "最暗處更暗",
+      "definition": "調整陰影等暗區所顯示的細節。2019 Tech Brief 亦描述為區域性調整。",
+      "approximationNote": "官方描述為區域性處理，全域陰影滑桿只是近似。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW"
+    },
+    {
+      "id": "contrast",
+      "uiOrder": 5,
+      "nameZhHant": "對比",
+      "nameEn": "Contrast",
+      "nameZhHans": "对比度",
+      "synonyms": [
+        "對比度",
+        "对比度",
+        "contrast"
+      ],
+      "nameSource": "screenshot-zh-Hant-TW",
+      "nameSourceNote": "iPhone 使用手冊未列出。官方 Mac 手冊為「對比」；教程常寫「對比度」。",
+      "group": "light",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-unofficial",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "最亮與最暗的差距加大",
+      "negativeDirection": "反差縮小，畫面較平、較柔",
+      "definition": "調整照片最亮與最暗部分之間的對比。",
+      "approximationNote": "相對容易做全域近似，仍不得稱為一致。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW"
+    },
+    {
+      "id": "brightness",
+      "uiOrder": 6,
+      "nameZhHant": "亮度",
+      "nameEn": "Brightness",
+      "nameZhHans": "亮度",
+      "synonyms": [
+        "brightness"
+      ],
+      "nameSource": "screenshot-zh-Hant-TW",
+      "nameSourceNote": "iPhone 使用手冊未列出。官方 Mac 手冊與教程均用「亮度」。",
+      "group": "light",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-unofficial",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "影像變亮，主要影響中間調",
+      "negativeDirection": "影像變暗，主要影響中間調",
+      "definition": "調整亮度；官方說明是透過提高中間調來改變整體明暗，與曝光（影響整段色調，亮部通常更明顯）不同。",
+      "approximationNote": "中間調提亮的近似與相簿實作可能不同。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW"
+    },
+    {
+      "id": "blackPoint",
+      "uiOrder": 7,
+      "nameZhHant": "黑點",
+      "nameEn": "Black Point",
+      "nameZhHans": "黑点",
+      "synonyms": [
+        "黑点",
+        "黑點值",
+        "黑場",
+        "黑场",
+        "black point",
+        "blackPoint"
+      ],
+      "nameSource": "screenshot-zh-Hant-TW",
+      "nameSourceNote": "iPhone 使用手冊未列出。官方 Mac 手冊為「黑點」。",
+      "group": "light",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-unofficial",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "最暗處更接近全黑、細節減少，對比往往看起來更夠",
+      "negativeDirection": "最暗處變淡、較不「死黑」",
+      "definition": "設定影像最暗部分變成全黑且無細節的點。可用於改善偏灰、對比不足的照片。",
+      "approximationNote": "黑點曲線可做粗略近似。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW"
+    },
+    {
+      "id": "saturation",
+      "uiOrder": 8,
+      "nameZhHant": "飽和度",
+      "nameEn": "Saturation",
+      "nameZhHans": "饱和度",
+      "synonyms": [
+        "饱和度",
+        "飽和",
+        "saturation"
+      ],
+      "nameSource": "official-mac-and-screenshot",
+      "nameSourceNote": "2023 台灣介面截圖標籤為「飽和度」，與官方 Mac 手冊一致。iPhone 使用手冊未列出。",
+      "group": "color",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-unofficial",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "整體顏色變濃",
+      "negativeDirection": "整體顏色變淡。二手來源：-100 可接近黑白。",
+      "definition": "調整整體顏色強度。",
+      "approximationNote": "全域飽和度較容易近似，仍不得稱為一致。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW-and-zh-Hans"
+    },
+    {
+      "id": "vibrance",
+      "uiOrder": 9,
+      "nameZhHant": "自然飽和度",
+      "nameEn": "Vibrance",
+      "nameZhHans": "自然饱和度",
+      "synonyms": [
+        "自然饱和度",
+        "自然飽和",
+        "vibrance"
+      ],
+      "nameSource": "screenshot-zh-Hant-TW",
+      "nameSourceNote": "iPhone 使用手冊未列出。官方 Mac 手冊為「自然飽和度」。教程偶把此項或增豔叫成「鮮豔度」，辨識時需看上下文，勿與濾鏡「鮮豔」混淆。",
+      "group": "color",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-unofficial",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "提升較淡的顏色，較少動到已飽和色與膚色",
+      "negativeDirection": "降低較淡顏色的鮮豔程度",
+      "definition": "提升muted／較淡的顏色，使畫面更豐富，同時較少影響膚色與已經飽和的顏色。",
+      "approximationNote": "若用普通飽和度去仿，人像容易偏色，必須明講。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW"
+    },
+    {
+      "id": "warmth",
+      "uiOrder": 10,
+      "nameZhHant": "色溫",
+      "nameEn": "Warmth",
+      "nameZhHans": "色温",
+      "synonyms": [
+        "色温",
+        "暖度",
+        "暖調",
+        "暖调",
+        "warmth",
+        "色溫值"
+      ],
+      "nameSource": "screenshot-zh-Hant-TW",
+      "nameSourceNote": "iPhone 使用手冊未列出，本輪亦無按鈕截圖。台灣對照文與調色教學（含 UpToGo 所稱「台灣版 iPhone 原相機」參數）寫「色溫」；部分二手文章寫「暖度」。截圖中可見溫度計圖示位於清晰度左側，符合 Warmth 的位置，但標籤文字未入鏡。須待截圖或系統字串核對。少數「暖度」用詞不足以證明曾改名。",
+      "group": "color",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-unofficial",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "偏黃／暖",
+      "negativeDirection": "偏藍／冷",
+      "definition": "以色溫（藍到黃）平衡畫面的冷暖。",
+      "approximationNote": "色溫平移可做粗略近似。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW-and-zh-Hans"
+    },
+    {
+      "id": "tint",
+      "uiOrder": 11,
+      "nameZhHant": "色調",
+      "nameEn": "Tint",
+      "nameZhHans": "色调",
+      "synonyms": [
+        "色调",
+        "tint",
+        "色調偏移",
+        "洋紅綠",
+        "洋红绿"
+      ],
+      "nameSource": "screenshot-zh-Hant-TW",
+      "nameSourceNote": "iPhone 使用手冊未列出，本輪亦無按鈕截圖。教程與 Mac 白平衡官方用語為「色調」（綠到洋紅）。截圖中可見水滴圖示位於清晰度左側、溫度計右側，符合 Tint 的位置，但標籤文字未入鏡。",
+      "group": "color",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-unofficial",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "偏洋紅",
+      "negativeDirection": "偏綠",
+      "definition": "以綠色到洋紅色的色調修正或改變畫面偏向。",
+      "approximationNote": "色調平移可做粗略近似。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW-and-zh-Hans"
+    },
+    {
+      "id": "sharpness",
+      "uiOrder": 12,
+      "nameZhHant": "清晰度",
+      "nameEn": "Sharpness",
+      "nameZhHans": "锐度",
+      "synonyms": [
+        "锐度",
+        "銳度",
+        "銳化",
+        "锐化",
+        "銳利度",
+        "锐利度",
+        "sharpness"
+      ],
+      "nameSource": "screenshot-zh-Hant-TW",
+      "nameSourceNote": "台灣介面截圖（2023 與 2025）標籤為「清晰度」。依工具列順序（色溫圖示→色調圖示→本項）對應 Sharpness。台灣對照文：中國「銳度／銳化」＝台灣「清晰度」。簡中顯示名採對照文「锐度」，尚未有簡中按鈕截圖。舊稿曾用「銳利度」，那是教程用語，不是已見的本機標籤。",
+      "group": "detail",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-from-slider-geometry",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。 清晰度截圖為 +23／+25，刻度在中央偏右，顯示 0 在中央，因此可排除「僅 0 到 100、0 在最左」。尚未找到顯示負值數字的截圖，負向含義仍未直接見到。",
+      "positiveDirection": "邊緣更清楚、更銳利",
+      "negativeDirection": "滑桿幾何顯示可向左超過 0，但尚未找到負值數字截圖，負向視覺效果未核定。",
+      "definition": "讓邊緣更清晰、更好定義。",
+      "approximationNote": "屬空間銳化，預覽容易與相簿不同，須明講。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW"
+    },
+    {
+      "id": "definition",
+      "uiOrder": 13,
+      "nameZhHant": "畫質",
+      "nameEn": "Definition",
+      "nameZhHans": "清晰度",
+      "synonyms": [
+        "清晰",
+        "definition",
+        "清晰度（中國用語，易與台灣「清晰度」＝Sharpness 混淆）"
+      ],
+      "nameSource": "screenshot-zh-Hant-TW",
+      "nameSourceNote": "台灣介面截圖標籤為「畫質」（與官方 Mac 名稱相同，但 Mac 控制項結構可能不同）。台灣對照文：中國「清晰度」＝台灣「畫質」。簡中顯示名採對照文「清晰度」，尚未有簡中按鈕截圖。辨識時務必依地區或上下文區分，不可把中國教程的「清晰度」寫進台灣的 Sharpness 欄。",
+      "group": "detail",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-from-slider-geometry",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。 畫質截圖為 +37，刻度在中央偏右。尚未找到負值數字截圖。",
+      "positiveDirection": "提高清晰與輪廓感",
+      "negativeDirection": "滑桿幾何顯示可向左超過 0，但尚未找到負值數字截圖，負向視覺效果未核定。",
+      "definition": "提高影像清晰度（中間調輪廓／局部對比一類效果，精確算法未公開）。",
+      "approximationNote": "屬局部對比類處理，預覽容易走樣，須明講。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW"
+    },
+    {
+      "id": "noiseReduction",
+      "uiOrder": 14,
+      "nameZhHant": "雜點消除",
+      "nameEn": "Noise Reduction",
+      "nameZhHans": "噪点消除",
+      "synonyms": [
+        "雜訊消除",
+        "杂讯消除",
+        "降噪",
+        "減少雜訊",
+        "减少噪点",
+        "噪點消除",
+        "noise reduction",
+        "noiseReduction"
+      ],
+      "nameSource": "screenshot-zh-Hant-TW",
+      "nameSourceNote": "台灣介面截圖標籤為「雜點消除」（與官方 Mac 名稱相同）。教程常寫「雜訊消除」「降噪」。簡中顯示名採常見「噪点消除」，尚未有簡中按鈕截圖。",
+      "group": "detail",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-from-slider-geometry",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。 雜點消除截圖為 +38，刻度在中央偏右。尚未找到負值數字截圖。",
+      "positiveDirection": "減少顆粒或斑點；過量會變柔、細節變少",
+      "negativeDirection": "滑桿幾何顯示可向左超過 0；官方只描述減少或消除雜訊。尚未找到負值數字截圖，負向是否等於「加雜訊」未核定。",
+      "definition": "減少或消除照片中的雜訊（顆粒、斑點）。",
+      "approximationNote": "去雜訊算法差異大，預覽不得稱為一致。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW-and-zh-Hans"
+    },
+    {
+      "id": "vignette",
+      "uiOrder": 15,
+      "nameZhHant": "暈邊",
+      "nameEn": "Vignette",
+      "nameZhHans": "晕影",
+      "synonyms": [
+        "暗角",
+        "暈影",
+        "晕影",
+        "暗角強度",
+        "vignette"
+      ],
+      "nameSource": "screenshot-zh-Hant-TW",
+      "nameSourceNote": "台灣介面截圖標籤為「暈邊」。教程常寫「暗角」；官方 Mac 為「暈影」。簡中顯示名採常見「晕影」，尚未有簡中按鈕截圖。",
+      "group": "effects",
+      "min": -100,
+      "max": 100,
+      "default": 0,
+      "step": 1,
+      "stepStatus": "observed-screenshots-integers",
+      "rangeStatus": "observed-screenshots-and-secondary",
+      "rangeNote": "公開截圖顯示數值為整數，且 0 的位置在滑桿中央。亮部 20、增豔 40、清晰度 23／25、畫質 37、雜點消除 38 都落在中央偏右，與 -100…100（而非 0…100、0 在最左）的刻度幾何相符。暈邊截圖：0 在中央、100 在最右。本輪台灣截圖另見陰影 100（指示在可見滑桿最右）、色溫 54、亮度 89，皆為整數；陰影 100 再證可見上限為 100。Gadget Hacks（2019）寫明 Vignette 默認 0、向右至 100、向左至 -100。Tom's Guide 提到 Highlights 可為 -100。Six Colors 寫 0 至 100 或 -100 至 100。Apple 官方仍未公布範圍。iOS 是否能像 Mac 一樣延伸範圍，未找到說明或截圖；暈邊 100 已在可見滑桿最右端。簡體截圖另見「晕影」-50（指示在中央左側，畫面四角加亮）與 85（四角壓暗），以及「曝光」-26／30、「饱和度」54。",
+      "positiveDirection": "加深畫面邊緣。截圖：值 100 時四角明顯變暗，且 100 在滑桿最右。",
+      "negativeDirection": "Gadget Hacks（2019）與 iPhone Photography School 寫：向左至 -100，邊緣變亮／變白。本輪截圖證實 0 在中央、可向左，但沒有負值或加亮邊緣的截圖。",
+      "definition": "在畫面邊緣加上暗角，以凸顯中央。",
+      "approximationNote": "簡單徑向遮罩可做粗略近似，半徑與衰減未必與相簿相同。Mac 另有子控制，iOS 只有單滑桿。",
+      "defaultEvidence": "screenshot-and-secondary: 暈邊截圖顯示未調為 0；其他項滑桿中央有原點。不是官方規格。",
+      "labelEvidence": "screenshot-zh-Hant-TW-and-zh-Hans"
+    }
+  ],
+  "excludedFromV1": [
+    {
+      "id": "autoEnhance",
+      "nameZhHant": "自動增強",
+      "nameEn": "Auto Enhance",
+      "reason": "會依每張照片連動多個滑桿，不是可攜、可重現的固定配方值。"
+    },
+    {
+      "id": "filters",
+      "nameZhHant": "濾鏡",
+      "nameEn": "Filters",
+      "reason": "屬於另一分頁；教程常寫名稱與 0–100 強度，但 iPhone 16 起部分機型改以攝影風格為主。第一版先只鎖調整滑桿。辨識讀到時可另記，非必填欄位。"
+    },
+    {
+      "id": "crop",
+      "nameZhHant": "裁切與幾何",
+      "nameEn": "Crop, straighten, perspective, flip, rotate",
+      "reason": "這是構圖不是調色，換照片套用會破壞構圖。"
+    },
+    {
+      "id": "photographicStyles",
+      "nameZhHant": "攝影風格、質感、顆粒",
+      "nameEn": "Photographic Styles, Texture, Grain",
+      "reason": "依拍攝機型、需高效率格式，以及系統版本，不能當通用第一版欄位。"
+    },
+    {
+      "id": "cleanupAndMarkup",
+      "nameZhHant": "清除、標註與貼圖文字",
+      "nameEn": "Clean Up, markup, stickers, text",
+      "reason": "不是調色參數，也超出第一版範圍。"
+    },
+    {
+      "id": "portraitAndLive",
+      "nameZhHant": "人像光效、景深、實況照片",
+      "nameEn": "Portrait lighting, depth, Live Photo effects",
+      "reason": "只存在於特定照片類型。"
+    },
+    {
+      "id": "macOnly",
+      "nameZhHant": "Mac 專屬調整",
+      "nameEn": "Curves, white-balance eyedropper, Black & White group, Cast, multi-slider Sharpness/Vignette",
+      "reason": "iPhone「調整」沒有這套完整控制，不能寫進第一版 iOS 配方。"
+    }
+  ],
+  "deferredFromV1": [
+    {
+      "id": "optionalFilter",
+      "reason": "濾鏡 id + 強度在教程很常見，但裝置差異大。等調整主格式跑通再考慮改為可選欄位。"
+    },
+    {
+      "id": "recipeStrength",
+      "reason": "試色時的「調強度」是產品行為，不是相簿裡的獨立調整項，等試色實作再定。"
+    }
+  ],
+  "unverified": [
+    "香港繁體調整列已有選中「曝光」「自動」的截圖，裁切分頁為「裁剪」（台灣既有截圖為「裁切」）。色調、色溫及其他調整項的香港按鈕文字仍未入鏡。",
+    "簡體「阴影」「锐度」「清晰度」仍無選中按鈕截圖。官方手冊與教程文字不能當成按鈕核定。簡體已有選中按鈕：曝光、鲜明度、高光、饱和度、色温、色调、噪点消除、晕影、自动。",
+    "未找到可公開讀取的 iOS Photos 系統語言字串檔（.strings／.stringsdict／xliff）能把 Tint 對到香港繁體用字。公開程式碼索引先前無結果或被拒。未從 IPA 或私有 SDK 提取。",
+    "清晰度、畫質、雜點消除的負值數字仍未入鏡。其他多個滑桿已有負值整數截圖（含晕影 -50、色温 -45）。",
+    "官方 iPad 手冊「暗部」與已確認的台灣 iPhone 按鈕「陰影」衝突仍在。香港 Shadows 按鈕未入鏡。",
+    "iOS 是否能像 Mac 一樣延伸滑桿範圍：未找到說明或截圖。"
+  ],
+  "recipeValueConvention": {
+    "omittedMeansDefault": true,
+    "defaultValue": 0,
+    "type": "integer",
+    "demoVerifiedOnIPhonePhotos": false
+  },
+  "recipes": [
+    {
+      "id": "warm-skin",
+      "nameZhHant": "暖色育膚",
+      "nameZhHans": "暖色育肤",
+      "description": "微微加暖、抬亮暗部，讓膚色看起來柔和，但不拉高飽和度。",
+      "status": "starter-demo-unverified",
+      "disclaimer": "起始示範，不是已在 iPhone 相簿驗證過的效果。數值方向參考公開調色教程的常見寫法，並非逐字複製任何一篇教程。套到不同照片上觀感會不同。",
+      "values": {
+        "exposure": 5,
+        "brilliance": 25,
+        "highlights": -20,
+        "shadows": 30,
+        "contrast": -12,
+        "brightness": 8,
+        "blackPoint": 0,
+        "saturation": -8,
+        "vibrance": 15,
+        "warmth": 18,
+        "tint": 6,
+        "sharpness": 0,
+        "definition": 5,
+        "noiseReduction": 0,
+        "vignette": 0
+      }
+    },
+    {
+      "id": "cool-portrait",
+      "nameZhHant": "清冷人像",
+      "nameZhHans": "清冷人像",
+      "description": "略降色溫與飽和，壓一點亮部，做成乾淨偏冷的人像調。",
+      "status": "starter-demo-unverified",
+      "disclaimer": "起始示範，不是已在 iPhone 相簿驗證過的效果。數值方向參考公開調色教程的常見寫法，並非逐字複製任何一篇教程。套到不同照片上觀感會不同。",
+      "values": {
+        "exposure": 0,
+        "brilliance": 20,
+        "highlights": -25,
+        "shadows": 22,
+        "contrast": -8,
+        "brightness": 6,
+        "blackPoint": 5,
+        "saturation": -12,
+        "vibrance": -10,
+        "warmth": -16,
+        "tint": 8,
+        "sharpness": 5,
+        "definition": 8,
+        "noiseReduction": 0,
+        "vignette": 10
+      }
+    }
+  ],
+  "labelVerification": {
+    "date": "2026-11-27",
+    "method": "public-web-screenshots-and-docs",
+    "notDeviceVerified": true,
+    "note": "以公開網頁與介面截圖核對。這不是用戶或本專案的 iPhone 實機驗收。查不到的項維持未核定。示範配方數值未改。顯示名未改。",
+    "savedScreenshotsDir": "evidence/",
+    "savedScreenshots": [
+      {
+        "file": "evidence/tg-trans-1.png",
+        "source": "https://img.tech-girlz.com/2025/01/1736942890-fe07eee1f0268775c646e844b05bff2d.png",
+        "article": "https://www.tech-girlz.com/2025/01/iphone-camera-settings-translation.html",
+        "observed": "台灣繁體介面，調整項標籤「亮部」，圓形圖示顯示整數 20；滑桿中央有原點，刻度在中央偏右。底部可見「風格」「調整」「裁切」「清除」。"
+      },
+      {
+        "file": "evidence/tg-trans-2.png",
+        "source": "https://img.tech-girlz.com/2025/01/1736942892-d9b6f4554ead74cebd62effb6a671a52.png",
+        "article": "https://www.tech-girlz.com/2025/01/iphone-camera-settings-translation.html",
+        "observed": "台灣繁體介面，標籤「增豔」（豔），圖示顯示整數 40；滑桿刻度在中央偏右。"
+      },
+      {
+        "file": "evidence/tg-trans-3.png",
+        "source": "https://img.tech-girlz.com/2025/01/1736942895-9a11768d2c2eea7c331011b06a7d4eb2.png",
+        "article": "https://www.tech-girlz.com/2025/01/iphone-camera-settings-translation.html",
+        "observed": "台灣繁體介面，標籤「清晰度」，圖示顯示整數 23。左側可見溫度計（色溫／Warmth 圖示）與水滴（色調／Tint 圖示），符合 Warmth→Tint→Sharpness 的工具列順序，故此「清晰度」對應 Sharpness。"
+      },
+      {
+        "file": "evidence/tg-sharp-2.png",
+        "source": "https://img.tech-girlz.com/2023/06/1687164492-2f3d7c17c949e158cf2fc9063af619b7.png",
+        "article": "https://www.tech-girlz.com/2023/06/iphone-sharpness-photos.html",
+        "observed": "較早的台灣繁體介面（約 2023），標籤同樣是「清晰度」，圖示顯示整數 25；滑桿刻度在中央偏右。"
+      },
+      {
+        "file": "evidence/tg-sharp-3.png",
+        "source": "https://img.tech-girlz.com/2023/06/1687164495-82e073e43fbd2022f1ece9bd263cf10b.png",
+        "article": "https://www.tech-girlz.com/2023/06/iphone-sharpness-photos.html",
+        "observed": "左機標籤「畫質」、整數 37；右機標籤「雜點消除」、整數 38。兩者刻度都在中央偏右。右側可見暈邊圖示。依工具列順序，「畫質」為 Definition，「雜點消除」為 Noise Reduction。"
+      },
+      {
+        "file": "evidence/tg-edit-1.jpg",
+        "source": "https://img.tech-girlz.com/2023/04/1682526563-7fca024d599668b0ce03535c8ba32af7.jpg",
+        "article": "https://www.tech-girlz.com/2023/05/edit-iphone-photo.html",
+        "observed": "標籤「暈邊」。左圖數值 0、指示在滑桿中央；右圖數值 100、指示在滑桿最右，畫面四角明顯變暗。"
+      },
+      {
+        "file": "evidence/tg-edit-3.jpg",
+        "source": "https://img.tech-girlz.com/2023/04/1682526532-67cb4b55f6bee1231d5e47aad855d532.jpg",
+        "article": "https://www.tech-girlz.com/2023/05/edit-iphone-photo.html",
+        "observed": "標籤「飽和度」出現在調整列上方；右側可見溫度計圖示。"
+      },
+      {
+        "file": "evidence/tech-girlz-og.png",
+        "source": "https://img.tech-girlz.com/2023/06/1687168222-68beb33ff42abb490cf3d0166981903f.png",
+        "article": "https://www.tech-girlz.com/2023/06/iphone-sharpness-photos.html",
+        "observed": "封面合成圖，同樣可見「清晰度」與整數 25。"
+      },
+      {
+        "file": "evidence/zanzan-003-J37a31.png",
+        "source": "https://zanzan.tw/archives/54150/assets/003-J37a31.png",
+        "article": "https://zanzan.tw/archives/54150",
+        "observed": "台灣繁體介面，調整項標籤「亮度」，圓形圖示顯示整數 89。右側可見黑點、自然飽和度圖示。底部為「調整」「濾鏡」「裁切」。文章有紅框標註。不是實機驗收。"
+      },
+      {
+        "file": "evidence/zanzan-004-J37a41.png",
+        "source": "https://zanzan.tw/archives/54150/assets/004-J37a41.png",
+        "article": "https://zanzan.tw/archives/54150",
+        "observed": "台灣繁體介面，調整項標籤「陰影」，圓形圖示顯示整數 100；指示在可見滑桿最右。解決台灣 iPhone 按鈕是「陰影」還是「暗部」的問題（此截圖為「陰影」）。不是實機驗收。"
+      },
+      {
+        "file": "evidence/zanzan-005-J37a51.png",
+        "source": "https://zanzan.tw/archives/54150/assets/005-J37a51.png",
+        "article": "https://zanzan.tw/archives/54150",
+        "observed": "台灣繁體介面，調整項標籤「色溫」，圓形圖示顯示整數 54。右側緊接水滴圖示（Tint 位置），再右側為清晰度三角。左側可見飽和度、自然飽和度圖示。未見到「暖度」。色調二字未入鏡。不是實機驗收。"
+      },
+      {
+        "file": "evidence/zanzan-006-J37a61.png",
+        "source": "https://zanzan.tw/archives/54150/assets/006-J37a61.png",
+        "article": "https://zanzan.tw/archives/54150",
+        "observed": "左圖：台灣繁體調整列選中「自動」（魔杖圖示）。右圖：捨棄更動對話框標題為「曝光」，按鈕為「捨棄所作更動」「取消」。這是介面鉻元素上的「曝光」用字，不是調整列選中按鈕標籤。不是實機驗收。"
+      },
+      {
+        "file": "evidence/sspai-09.jpg",
+        "source": "https://cdnfile.sspai.com/2019/08/31/2013518641335f6b2b35acb0f6794666.jpg",
+        "article": "https://sspai.com/post/56483",
+        "observed": "簡體 iOS 13 調整介面三聯圖。左：選中「自动」。中：選中「高光」，數值 22。右：選中「噪点消除」，數值 4。未見到陰影、色温、色调、鲜明度的選中標籤。不是實機驗收。"
+      },
+      {
+        "file": "evidence/kkplay-toning-05.jpg",
+        "source": "https://kkplay3c.net/wp-content/uploads/2023/01/iPhone-photo-toning-05.jpg",
+        "article": "https://kkplay3c.net/iphone-photo-toning/",
+        "observed": "台灣繁體三聯圖。中聯選中「色調」，圖示顯示整數 15；左側為溫度計、右側為清晰度三角。左聯選中「色溫」-15，右聯選中「清晰度」15。不是實機驗收。"
+      },
+      {
+        "file": "evidence/kkplay-toning-20.jpg",
+        "source": "https://kkplay3c.net/wp-content/uploads/2023/01/iPhone-photo-toning-20.jpg",
+        "article": "https://kkplay3c.net/iphone-photo-toning/",
+        "observed": "台灣繁體再確認選中「色調」15，以及「色溫」30、「清晰度」30。"
+      },
+      {
+        "file": "evidence/kkplay-toning-27.jpg",
+        "source": "https://kkplay3c.net/wp-content/uploads/2023/01/iPhone-photo-toning-27.jpg",
+        "article": "https://kkplay3c.net/iphone-photo-toning/",
+        "observed": "台灣繁體再確認選中「色調」56，以及「色溫」45、「清晰度」5。"
+      },
+      {
+        "file": "evidence/kkplay-toning-03.jpg",
+        "source": "https://kkplay3c.net/wp-content/uploads/2023/01/iPhone-photo-toning-03.jpg",
+        "article": "https://kkplay3c.net/iphone-photo-toning/",
+        "observed": "台灣繁體選中「曝光」-15、「增豔」50、「亮部」-100。曝光按鈕與亮部負值入鏡。"
+      },
+      {
+        "file": "evidence/kkplay-toning-04.jpg",
+        "source": "https://kkplay3c.net/wp-content/uploads/2023/01/iPhone-photo-toning-04.jpg",
+        "article": "https://kkplay3c.net/iphone-photo-toning/",
+        "observed": "台灣繁體選中「對比」-15、「飽和度」-20、「自然飽和度」20。"
+      },
+      {
+        "file": "evidence/kkplay-toning-09.jpg",
+        "source": "https://kkplay3c.net/wp-content/uploads/2023/01/iPhone-photo-toning-09.jpg",
+        "article": "https://kkplay3c.net/iphone-photo-toning/",
+        "observed": "台灣繁體選中「陰影」20、「對比」-25、「亮度」15。"
+      },
+      {
+        "file": "evidence/kkplay-toning-19.jpg",
+        "source": "https://kkplay3c.net/wp-content/uploads/2023/01/iPhone-photo-toning-19.jpg",
+        "article": "https://kkplay3c.net/iphone-photo-toning/",
+        "observed": "台灣繁體選中「黑點」-5、「飽和度」10、「自然飽和度」10。"
+      },
+      {
+        "file": "evidence/gotrip-hk-exposure.png",
+        "source": "https://imgs.gotrip.hk/wp-content/uploads/2025/01/untitled-design-2_17560542166777674003d06.png",
+        "article": "https://www.gotrip.hk/%e6%97%85%e9%81%8a/iphone-%e5%af%8c%e5%a3%ab%e8%89%b2-%e8%aa%bf%e8%89%b2-%e6%95%99%e5%ad%b8-%e6%97%85%e9%81%8a%e6%95%99%e5%ae%a4-gt13-1518407/",
+        "observed": "香港繁體調整列選中「曝光」。底部分頁為「調整」「濾鏡」「裁剪」「清除」。未滑到色調。"
+      },
+      {
+        "file": "evidence/ezone2-hk-exposure-minus47.jpg",
+        "source": "https://resource02.ulifestyle.com.hk/ulcms/content/article/image/original/2025/05/20250512193527_378243d838f4930300f59d6a58aad2bd63a4bab7.PNG",
+        "article": "https://ezone.hk/article/3533338/%E6%89%93%E9%80%A0%E7%8D%A8%E7%89%B9%E6%97%A5%E7%B3%BB%E5%BA%95%E7%89%87%E6%84%9F-iPhone%E5%85%A7%E5%BB%BA%E7%85%A7%E7%89%87%E8%AA%BF%E8%89%B2%E6%95%99%E5%AD%B8%E8%88%87%E4%B8%80%E9%8D%B5%E5%A5%97%E7%94%A8%E6%8A%80%E5%B7%A7-%E9%99%84%E8%AA%BF%E8%89%B2%E5%8F%83%E6%95%B8",
+        "observed": "香港繁體（iOS 18）選中「曝光」，圖示 -47；分頁「裁剪」；選單「還原更改曝光」。無色調選中標籤。"
+      },
+      {
+        "file": "evidence/ezone2-hk-about-photo-label.jpg",
+        "source": "https://resource02.ulifestyle.com.hk/ulcms/content/article/image/original/2025/05/20250512192231_fa35de8c430b78452722b4ab7fd5f02674896503.PNG",
+        "article": "https://ezone.hk/article/3533338/%E6%89%93%E9%80%A0%E7%8D%A8%E7%89%B9%E6%97%A5%E7%B3%BB%E5%BA%95%E7%89%87%E6%84%9F-iPhone%E5%85%A7%E5%BB%BA%E7%85%A7%E7%89%87%E8%AA%BF%E8%89%B2%E6%95%99%E5%AD%B8%E8%88%87%E4%B8%80%E9%8D%B5%E5%A5%97%E7%94%A8%E6%8A%80%E5%B7%A7-%E9%99%84%E8%AA%BF%E8%89%B2%E5%8F%83%E6%95%B8",
+        "observed": "同一裝置「關於本機」媒體計數名稱為「相片」，作為香港語區旁證。"
+      },
+      {
+        "file": "evidence/zol-vignette-minus50.jpg",
+        "source": "https://doc-fd.zol-img.com.cn/t_s2000x2000/g2/M00/05/09/ChMlWl0SE7WIH2TqAAQ81Go3ErwAALP2QCKLmMABDzs291.jpg",
+        "article": "https://dcdv.zol.com.cn/720/7200929.html",
+        "observed": "簡體 iOS 13 調整列選中「晕影」-50，指示在可見滑桿中央左側；同一幀畫面四角明顯加亮（白色邊緣）。頂欄「调整」。不是實機驗收。"
+      },
+      {
+        "file": "evidence/zol-vignette-85.jpg",
+        "source": "https://doc-fd.zol-img.com.cn/t_s2000x2000/g2/M00/05/09/ChMlWl0SE7aIXuY-AAQXmKbtB_0AALP2QCSqw0ABBew620.jpg",
+        "article": "https://dcdv.zol.com.cn/720/7200929.html",
+        "observed": "同一來源，選中「晕影」85，指示在中央右側，四角壓暗。與 -50 對照，支持向左為負值並加亮邊緣。"
+      },
+      {
+        "file": "evidence/zol-exposure-minus26.jpg",
+        "source": "https://doc-fd.zol-img.com.cn/t_s2000x2000/g2/M00/05/09/ChMlWl0SDHmIeeqSAAPuVuMaGuIAALPzQKFs48AA-5u971.jpg",
+        "article": "https://dcdv.zol.com.cn/720/7200929.html",
+        "observed": "簡體調整列選中「曝光」-26。"
+      },
+      {
+        "file": "evidence/zol-exposure-30.jpg",
+        "source": "https://doc-fd.zol-img.com.cn/t_s2000x2000/g2/M00/05/09/ChMlWV0SDHmIL_TxAARiVoUl648AALPzQKJof0ABGJu210.jpg",
+        "article": "https://dcdv.zol.com.cn/720/7200929.html",
+        "observed": "簡體調整列選中「曝光」30。"
+      },
+      {
+        "file": "evidence/zol-saturation-54.jpg",
+        "source": "https://doc-fd.zol-img.com.cn/t_s2000x2000/g2/M00/05/09/ChMlWl0SGK6IVcj9AAQsWKWs3HsAALP3wGaFiEABCxw354.jpg",
+        "article": "https://dcdv.zol.com.cn/720/7200929.html",
+        "observed": "選中「饱和度」54。右側可見未選中的溫度計（色溫位置）圖示，但「色温／色调」本文未入鏡。底欄有影片圖示，可能是照片 App 內的影片調整，標籤同為「饱和度」。"
+      },
+      {
+        "file": "evidence/zol-auto.jpg",
+        "source": "https://doc-fd.zol-img.com.cn/t_s2000x2000/g2/M00/05/09/ChMlWV0SDkCICbgZAALtD5zUIUMAALP0AMi3EEAAu0n147.jpg",
+        "article": "https://dcdv.zol.com.cn/720/7200929.html",
+        "observed": "選中「自动」。自動不進第一版配方，僅作簡體介面鉻元素備查。"
+      },
+      {
+        "file": "evidence/weixin-tint-39.jpg",
+        "source": "https://mmbiz.qpic.cn/sz_mmbiz_png/Fic8lEicGJjYnHeEZEkibibJClnImONbwoVXEiay3Wa4C6Brft2iawm5eoa5qHs0lwA4YdichibmNDwUt0qZj84ib6bpnmA/640?wx_fmt=png",
+        "article": "https://mp.weixin.qq.com/s/A2FszyUIhgqFOu828vxZFg",
+        "observed": "簡體調整列選中「色调」39。左側為已調整的色溫溫度計，右側為清晰度三角，符合 Warmth→Tint→Sharpness 順序。底欄「取消／复原」。不是實機驗收。"
+      },
+      {
+        "file": "evidence/weixin-warmth-minus45.jpg",
+        "source": "https://mmbiz.qpic.cn/sz_mmbiz_png/Fic8lEicGJjYnHeEZEkibibJClnImONbwoVX1AOdtvblW59ViaYKdP1hiaD0p51CEGe7Ox1nC1CWrzTIzjMNRcnqibmXg/640?wx_fmt=png",
+        "article": "https://mp.weixin.qq.com/s/A2FszyUIhgqFOu828vxZFg",
+        "observed": "簡體選中「色温」-45。右側可見未選中的水滴圖示（色調位置），「色调」本文未出現在此幀。"
+      },
+      {
+        "file": "evidence/weixin-warmth-22.jpg",
+        "source": "https://mmbiz.qpic.cn/sz_mmbiz_png/Fic8lEicGJjYnHeEZEkibibJClnImONbwoVXkxyYrP4WIo7PvF2pnooicIXfuIgcdjKhAWVGRoicL9XumTmK57mNHV1Q/640?wx_fmt=png",
+        "article": "https://mp.weixin.qq.com/s/A2FszyUIhgqFOu828vxZFg",
+        "observed": "簡體選中「色温」22。右側水滴圖示未選中。"
+      },
+      {
+        "file": "evidence/weixin-warmth-82.jpg",
+        "source": "https://mmbiz.qpic.cn/sz_mmbiz_png/Fic8lEicGJjYnHeEZEkibibJClnImONbwoVXoia0Mcaf09bSzLaDkOxXsNvuXichyDiaq2oOHDWaYZr8icJuLZXIIicCGDA/640?wx_fmt=png",
+        "article": "https://mp.weixin.qq.com/s/A2FszyUIhgqFOu828vxZFg",
+        "observed": "簡體選中「色温」82。右側水滴圖示未選中。"
+      },
+      {
+        "file": "evidence/weixin-brilliance-50.jpg",
+        "source": "https://mmbiz.qpic.cn/sz_mmbiz_png/Fic8lEicGJjYnHeEZEkibibJClnImONbwoVXP5bbfFA9vIW4YgBSicP3EmocoHexOo027aL3GpGWkASPUgzRYfoQ0GQ/640?wx_fmt=png",
+        "article": "https://mp.weixin.qq.com/s/A2FszyUIhgqFOu828vxZFg",
+        "observed": "簡體選中「鲜明度」50。對應 Brilliance。官方中國手冊用字與按鈕一致。"
+      },
+      {
+        "file": "evidence/weixin-brilliance-50-food.jpg",
+        "source": "https://mmbiz.qpic.cn/sz_mmbiz_png/Fic8lEicGJjYnHeEZEkibibJClnImONbwoVXHKdFpJdqXINd4B15g0GN60nWQ0SjKzJoibNx5rYLaAOyibe81K5vVaJQ/640?wx_fmt=png",
+        "article": "https://mp.weixin.qq.com/s/A2FszyUIhgqFOu828vxZFg",
+        "observed": "簡體選中「鲜明度」50（美食照，另一幀）。"
+      },
+      {
+        "file": "evidence/weixin-brilliance-38.jpg",
+        "source": "https://mmbiz.qpic.cn/sz_mmbiz_png/Fic8lEicGJjYnHeEZEkibibJClnImONbwoVX0xXsY3BwwiclBKmxUYTZzqgkgQpYVxNpSQ3iad9l8ia3zJKrXCptAA6AA/640?wx_fmt=png",
+        "article": "https://mp.weixin.qq.com/s/A2FszyUIhgqFOu828vxZFg",
+        "observed": "簡體選中「鲜明度」38。"
+      }
+    ]
+  }
+}

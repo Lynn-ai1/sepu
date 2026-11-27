@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>色譜 · 試色預覽</title>
+    <meta
+      name="description"
+      content="色譜試色預覽。用示範配方在自己的照片上看近似效果。這不是 iPhone 照片的調整。"
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f3f3f1'/%3E%3Ccircle cx='16' cy='16' r='12' fill='%23d5e4ee'/%3E%3Cpath d='M16 4a12 12 0 0 1 0 24z' fill='%23e4c2a2'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#photo">跳到照片比較</a>
+    <div class="sticky-top">
+      <header class="wrap header-row">
+        <h1>色譜</h1>
+        <p>試色預覽</p>
+      </header>
+      <div class="disclaimer" role="note">
+        <div class="wrap">
+          <p class="disclaimer-lead">這是近似算法，與 iPhone「照片」的「調整」不同，不會得到相同結果。</p>
+          <p>
+            增豔和陰影是區域調整，配方數字只顯示，不進畫面。自然飽和度按顏色濃淡和膚色分開處理，沒有用飽和度滑桿代替。清晰度、畫質、雜點消除、暈邊只做粗略的空間處理。Apple
+            沒有公開各滑桿公式，這裡的強弱不是相簿刻度。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <main class="wrap">
+      <section aria-labelledby="recipe-heading">
+        <h2 id="recipe-heading">示範配方</h2>
+        <div id="recipes" class="recipes" role="radiogroup" aria-label="示範配方"></div>
+        <p id="recipe-status" class="status-line"></p>
+        <p id="recipe-desc"></p>
+        <p id="recipe-disclaimer" class="fine"></p>
+        <p class="fine">配方文字描述的是用意。畫面裡沒有計算增豔和陰影。</p>
+      </section>
+
+      <section id="photo" aria-labelledby="photo-heading">
+        <h2 id="photo-heading">原圖與近似預覽</h2>
+        <div class="actions">
+          <label class="button primary" id="pick-label" for="file">選擇照片</label>
+          <input id="file" class="visually-hidden" type="file" accept="image/*" />
+          <button type="button" class="button" id="swatch">改用內建色塊</button>
+          <button type="button" class="button" id="save" disabled>儲存圖片</button>
+        </div>
+        <p id="photo-meta" class="fine"></p>
+        <div class="view-toggle" role="radiogroup" aria-label="比較方式">
+          <label class="segment">
+            <input class="visually-hidden" type="radio" name="view" value="side" checked />
+            <span>並排</span>
+          </label>
+          <label class="segment">
+            <input class="visually-hidden" type="radio" name="view" value="wipe" />
+            <span>滑動對比</span>
+          </label>
+        </div>
+        <div id="stage" class="stage is-side" style="--split: 50%">
+          <div class="wipe-labels" hidden>
+            <span>原圖</span>
+            <span>近似預覽</span>
+          </div>
+          <div id="frame" class="frame">
+            <p id="empty" class="empty">還沒有照片。從裝置選一張，或先用內建色塊看冷暖差異。</p>
+            <figure class="fig-original">
+              <figcaption>原圖</figcaption>
+              <div class="well">
+                <canvas id="original" aria-label="原圖"></canvas>
+              </div>
+            </figure>
+            <figure class="fig-adjusted">
+              <figcaption>近似預覽</figcaption>
+              <div class="well">
+                <canvas id="adjusted" aria-label="近似預覽"></canvas>
+              </div>
+            </figure>
+            <div id="handle" class="handle" hidden></div>
+          </div>
+          <label class="wipe-control" for="wipe">分隔位置</label>
+          <input id="wipe" class="wipe-control" type="range" min="0" max="100" step="1" value="50" aria-label="原圖與近似預覽的分隔位置，數字是原圖所佔的百分比" />
+        </div>
+        <p class="fine">比較和儲存用同一張工作圖，長邊最多 1600 像素，不是原檔尺寸。存下的圖沒有加上這段說明。</p>
+        <p id="status" role="status">選擇一張照片，或先用內建色塊。</p>
+        <div id="save-fallback"></div>
+      </section>
+
+      <section aria-labelledby="intensity-heading">
+        <div class="intensity-head">
+          <h2 id="intensity-heading">套用強度</h2>
+          <output id="intensity-out" for="intensity">100</output>
+        </div>
+        <input id="intensity" type="range" min="0" max="100" step="1" value="100" aria-describedby="intensity-help" />
+        <div class="scale-ends" aria-hidden="true"><span>0 原圖</span><span>100 配方全量</span></div>
+        <p id="intensity-help" class="fine">這是預覽用來縮放整份配方的整數。0 時畫面回到原圖。四捨五入時，.5 會遠離 0。增豔和陰影在任何強度都不進畫面。</p>
+      </section>
+
+      <section aria-labelledby="params-heading">
+        <h2 id="params-heading">配方數值</h2>
+        <p class="fine">名稱用台灣「照片」調整列的顯示名，順序與工具列相同。滑桿 0 在中央，整數，可見範圍 -100 到 100。標成「近似」的項目有畫進預覽，公式是這份預覽自己的。標成「只顯示」的項目只留下數字。</p>
+        <p class="ruler-key" aria-hidden="true"><span>-100</span><span>0</span><span>+100</span></p>
+        <ol id="params"></ol>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <p>照片只在這台裝置的瀏覽器裡處理，不會上傳。這個頁面沒有登入、收藏或分享。試色結果是近似預覽，與 iPhone「照片」的「調整」不同。</p>
+      </div>
+    </footer>
+    <noscript>
+      <p class="wrap">需要 JavaScript 才能試色。照片不會上傳。</p>
+    </noscript>
+    <script src="schema.js"></script>
+    <script src="adjust.js"></script>
+    <script src="present.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
